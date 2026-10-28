@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saiii CallPaper Company – Conference submission software</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#070707;--ink:#f6f1e3;--mute:#a79f88;--gold:#d4af37;--gold1:#f7e08a;--gold2:#b8902a;--gold3:#7d5f12;
+  --card:rgba(255,255,255,.05);--line:rgba(212,175,55,.28);--sh:rgba(0,0,0,.6);
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1000px 600px at 50% -10%,#1c1606,var(--bg) 60%);background-color:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.1;margin:0}
+.gold{background:linear-gradient(90deg,var(--gold1),var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+/* 3D hand background */
+#handwrap{position:fixed;inset:0;z-index:0;pointer-events:none;display:grid;place-items:center;perspective:1100px;overflow:hidden}
+#hand{width:min(92vw,560px);height:auto;transform-style:preserve-3d;will-change:transform;opacity:.55;filter:drop-shadow(0 0 22px rgba(212,175,55,.35))}
+.glass{background:var(--card);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);border:1px solid var(--line);border-radius:20px;
+  box-shadow:0 1px 2px var(--sh),0 10px 22px var(--sh),0 28px 54px var(--sh),inset 0 1px 0 rgba(255,255,255,.08)}
+.btn{font:700 1rem var(--sans);border:0;cursor:pointer;padding:14px 26px;border-radius:14px;color:#1a1204;text-decoration:none;display:inline-block;text-align:center;
+  background:linear-gradient(180deg,var(--gold1),var(--gold) 55%,var(--gold2));
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 0 var(--gold3),0 14px 24px rgba(212,175,55,.3);transition:transform .12s,box-shadow .12s}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 1px 0 var(--gold3),0 4px 8px rgba(212,175,55,.3)}
+.btn.ghost{background:linear-gradient(180deg,#232323,#111);color:var(--gold);border:1px solid var(--line);box-shadow:0 6px 0 #000,0 12px 20px rgba(0,0,0,.5)}
+.btn.ghost:active{box-shadow:0 1px 0 #000}
+.btn.sm{padding:9px 18px;font-size:.9rem;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 4px 0 var(--gold3),0 8px 14px rgba(212,175,55,.25)}
+.btn.sm:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold3)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.brand svg{width:42px;height:42px;filter:drop-shadow(0 4px 10px rgba(212,175,55,.4))}
+.brand b{font:800 1.5rem var(--serif);letter-spacing:-.03em;line-height:1}.brand small{display:block;font:500 .62rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-top:3px}
+nav .links{display:flex;gap:22px;align-items:center;font-size:.92rem}nav .links a:not(.btn){color:var(--mute);text-decoration:none}
+.hgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:40px 0 30px}
+.eyebrow{display:inline-block;padding:6px 14px;border-radius:99px;font-size:.8rem;font-weight:700;color:var(--gold);margin-bottom:18px}
+h1{font-size:clamp(2.3rem,6.4vw,4rem);font-weight:800;margin-bottom:18px}
+.lead{color:var(--mute);font-size:1.08rem;margin:0 0 28px;max-width:30em}
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.stage{perspective:900px;height:340px;display:grid;place-items:center;position:relative}
+.doc3d{position:relative;width:190px;height:245px;transform-style:preserve-3d;animation:spin 16s linear infinite}
+@keyframes spin{from{transform:rotateX(-12deg) rotateY(0)}to{transform:rotateX(-12deg) rotateY(360deg)}}
+.sheet{position:absolute;inset:0;border-radius:10px;background:linear-gradient(145deg,#1d1d1d,#0b0b0b);border:1px solid var(--gold2);box-shadow:0 12px 34px rgba(0,0,0,.7),0 0 24px rgba(212,175,55,.15);padding:22px 18px}
+.sheet i{display:block;height:7px;border-radius:4px;background:#3a3320;margin-bottom:11px}
+.sheet i:nth-child(1){width:62%;height:12px;background:linear-gradient(90deg,var(--gold1),var(--gold2))}.sheet i:nth-child(3){width:86%}.sheet i:nth-child(5){width:72%}.sheet i:nth-child(7){width:92%}
+.s1{transform:translateZ(26px)}.s2{transform:translateZ(9px);opacity:.95}.s3{transform:translateZ(-9px);opacity:.9}.s4{transform:translateZ(-26px);opacity:.85}
+.stamp{position:absolute;right:12px;bottom:16px;padding:4px 10px;border:2px solid var(--gold);color:var(--gold);border-radius:8px;font-size:.7rem;font-weight:800;transform:rotate(-8deg)}
+.chip{position:absolute;padding:9px 14px;font-size:.82rem;font-weight:600;border-radius:14px;white-space:nowrap}
+.c1{top:14%;left:0}.c2{bottom:12%;right:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px}
+.stat{padding:20px;text-align:center}.stat b{display:block;font:800 2rem var(--serif)}.stat span{color:var(--mute);font-size:.88rem}
+section{padding:70px 0 0}
+.tag{color:var(--gold);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(1.7rem,4.4vw,2.6rem);margin-bottom:12px}
+.sub{color:var(--mute);max-width:36em;margin:0 0 30px}
+.built{display:flex;flex-wrap:wrap;gap:12px}.built span{padding:10px 18px;border-radius:99px;font-weight:600;font-size:.92rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;perspective:1000px}
+.card{padding:26px;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out;will-change:transform;position:relative}
+.card.leave{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(247,224,138,.22),transparent 55%);opacity:var(--go,0);transition:opacity .2s}
+.ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:1.5rem;margin-bottom:14px;background:linear-gradient(145deg,#2a2210,#0d0d0d);border:1px solid var(--line);box-shadow:0 10px 20px var(--sh);transform:translateZ(40px)}
+.card h3{font-size:1.25rem;margin-bottom:6px;transform:translateZ(26px)}
+.card p{margin:0;color:var(--mute);font-size:.95rem;transform:translateZ(14px)}
+.steps{counter-reset:s}.step{counter-increment:s}.step h3::before{content:counter(s,decimal-leading-zero) "  ";color:var(--gold);font-size:.9rem;font-family:var(--sans)}
+.blind{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:34px;align-items:center}
+.redact{display:inline-block;background:var(--gold);color:transparent;border-radius:4px;padding:0 8px;user-select:none}
+.price{font:800 2.1rem var(--serif);margin:8px 0;transform:translateZ(20px)}.price small{font:500 .9rem var(--sans);color:var(--mute)}
+.card ul{padding:0;margin:14px 0 20px;list-style:none;font-size:.93rem;transform:translateZ(14px)}
+.card li{padding:5px 0 5px 24px;position:relative}.card li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
+.feat{border:2px solid var(--gold)}.feat .badge{position:absolute;top:-13px;left:24px;background:var(--gold);color:#1a1204;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:99px;transform:translateZ(40px)}
+details{padding:18px 22px;margin-bottom:12px;cursor:pointer}details summary{font-weight:700;list-style:none}details p{margin:10px 0 0;color:var(--mute)}
+.contact{padding:44px 28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:70px;border-color:var(--gold)}
+.contact .inner{padding:22px;border-radius:18px;background:rgba(0,0,0,.4);border:1px solid var(--line)}
+.contact input,.contact textarea{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);margin-bottom:12px}
+.contact ::placeholder{color:#8a826c}
+.phone{display:block;font:800 1.7rem var(--serif);color:var(--gold);text-decoration:none;margin:6px 0 14px}
+footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;position:relative;z-index:1}
+@media (max-width:760px){.hgrid,.blind,.contact{grid-template-columns:1fr}.stage{height:290px}nav .links a:not(.btn){display:none}.blind{padding:24px}#hand{opacity:.45}}
+@media (prefers-reduced-motion:reduce){.doc3d{animation:none;transform:rotateX(-12deg) rotateY(-30deg)}.card{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="handwrap" aria-hidden="true">
+<svg id="hand" viewBox="0 0 400 520" fill="none">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7e08a"/><stop offset=".5" stop-color="#d4af37"/><stop offset="1" stop-color="#7d5f12"/></linearGradient></defs>
+  <g stroke="url(#g)" stroke-width="2.5" fill="rgba(212,175,55,.1)">
+    <rect x="165" y="410" width="80" height="110" rx="14"/>
+    <g id="th"><rect x="131" y="262" width="28" height="108" rx="14"/></g>
+    <g id="f1"><rect x="146" y="135" width="28" height="150" rx="14"/></g>
+    <g id="f2"><rect x="180" y="110" width="30" height="175" rx="15"/></g>
+    <g id="f3"><rect x="216" y="130" width="28" height="155" rx="14"/></g>
+    <g id="f4"><rect x="250" y="170" width="24" height="115" rx="12"/></g>
+    <rect x="140" y="268" width="134" height="150" rx="46" fill="rgba(10,10,10,.55)"/>
+    <path d="M175 330c20 14 42 14 62 0" opacity=".5"/><circle cx="207" cy="360" r="6" fill="url(#g)" stroke="none" opacity=".7"/>
+  </g>
+</svg></div>
+
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#top" aria-label="Saiii CallPaper Company">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7e08a"/><stop offset=".55" stop-color="#d4af37"/><stop offset="1" stop-color="#8a6a16"/></linearGradient></defs>
+        <rect x="2" y="2" width="44" height="44" rx="12" fill="url(#lg)"/>
+        <g fill="#0a0a0a"><circle cx="13" cy="14" r="2.6"/><rect x="10.8" y="20" width="4.4" height="14" rx="2.2"/>
+        <circle cx="24" cy="11" r="2.6"/><rect x="21.8" y="17" width="4.4" height="20" rx="2.2"/>
+        <circle cx="35" cy="8" r="2.6"/><rect x="32.8" y="14" width="4.4" height="26" rx="2.2"/></g></svg>
+      <span><b class="gold">saiii</b><small>CallPaper Company</small></span></a>
+    <div class="links"><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="btn sm" href="tel:08052052880">Call us</a></div>
+  </nav>
+  <div id="top" class="hgrid">
+    <div>
+      <span class="eyebrow glass">Conference submission software</span>
+      <h1>Every paper tracked. Every decision <span class="gold">on time.</span></h1>
+      <p class="lead">Saiii CallPaper Company replaces email chaos with one system for submissions, blind peer review, decisions and registration fees.</p>
+      <div class="row"><a class="btn" href="#pricing">Start 14-day free trial</a><a class="btn ghost" href="tel:08052052880">📞 08052052880</a></div>
+    </div>
+    <div class="stage">
+      <div class="glass chip c1">🔒 Reviewer sees no author names</div>
+      <div class="doc3d"><div class="sheet s4"></div><div class="sheet s3"></div><div class="sheet s2"></div>
+        <div class="sheet s1"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="stamp">ACCEPTED</span></div></div>
+      <div class="glass chip c2">✉️ Decision email sent to author</div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="glass stat"><b class="gold">0</b><span>papers lost in email</span></div>
+    <div class="glass stat"><b class="gold">3</b><span>roles: author, reviewer, chair</span></div>
+    <div class="glass stat"><b class="gold">14</b><span>day free trial</span></div>
+    <div class="glass stat"><b class="gold">Auto</b><span>decision emails</span></div>
+  </div>
+
+  <section>
+    <div class="tag">Built for</div><h2>Anyone who runs a call for papers</h2>
+    <div class="built"><span class="glass">🎓 Universities</span><span class="glass">📚 Journals</span><span class="glass">🏛️ Professional associations</span><span class="glass">🎤 Research summits</span></div>
+  </section>
+
+  <section id="how">
+    <div class="tag">How it works</div><h2>From submission to registration</h2>
+    <p class="sub">One workflow your whole committee can follow, with nothing left to chase by email.</p>
+    <div class="grid steps">
+      <div class="glass card step"><div class="ico">📥</div><h3>Submit</h3><p>Authors send an abstract with the paper file. Everything is stored, never buried.</p></div>
+      <div class="glass card step"><div class="ico">🧑‍⚖️</div><h3>Assign &amp; review</h3><p>Chairs assign reviewers. Reviewers add scores and comments in one place.</p></div>
+      <div class="glass card step"><div class="ico">✉️</div><h3>Decide</h3><p>Chairs make the call and authors are notified automatically by email.</p></div>
+      <div class="glass card step"><div class="ico">💳</div><h3>Collect fees</h3><p>Accepted authors register and pay online, so revenue is tracked with the paper.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="blind glass">
+      <div><div class="tag">Fair by design</div><h2>Blind review, built in</h2>
+        <p class="sub" style="margin:0">Reviewers see the work, never the author. Scores reflect the paper alone, which protects your conference’s credibility.</p></div>
+      <div class="glass card" style="padding:22px"><b>Paper #214 · Machine Learning in Education</b><br>
+        <span style="color:var(--mute)">Author:</span> <span class="redact">Samuel Daniel</span><br>
+        <span style="color:var(--mute)">Reviewer score:</span> 8 / 10<br><span style="color:var(--mute)">Status:</span> Under review</div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="tag">Pricing</div><h2>Simple, honest pricing</h2>
+    <p class="sub">Try everything free for 14 days. No surprises after.</p>
+    <div class="grid">
+      <div class="glass card"><h3>Free trial</h3><div class="price">₦0<small> / 14 days</small></div><ul><li>Full access for 14 days</li><li>Test-mode registration fees</li><li>Author, reviewer &amp; chair roles</li></ul><a class="btn sm" href="#contact">Start free trial</a></div>
+      <div class="glass card feat"><span class="badge">Most popular</span><h3>Conference</h3><div class="price">₦100,000</div><ul><li>Unlimited submissions</li><li>Blind review &amp; scoring</li><li>Automatic decision emails</li><li>Registration fee collection</li></ul><a class="btn sm" href="#contact">Get Conference</a></div>
+      <div class="glass card"><h3>Custom</h3><div class="price">₦300,000</div><ul><li>Everything in Conference</li><li>Your branding &amp; custom setup</li><li>Priority support</li></ul><a class="btn sm" href="#contact">Get Custom</a></div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="tag">FAQ</div><h2>Good questions</h2><br>
+    <details class="glass"><summary>Can reviewers see who wrote a paper?</summary><p>No. Reviewers only see the paper and its abstract. Author names stay hidden until the chair decides.</p></details>
+    <details class="glass"><summary>How do authors hear the result?</summary><p>An email with the decision is sent automatically as soon as the chair records it.</p></details>
+    <details class="glass"><summary>How does the free trial work?</summary><p>You get full access for 14 days with registration fees in test mode. Pick a plan when you’re ready.</p></details>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="contact glass">
+      <div><h2>Ready to <span class="gold">stop chasing papers?</span></h2><p class="lead" style="margin:12px 0 14px">Call or message Saiii CallPaper Company today.</p>
+        <a class="phone" href="tel:08052052880">08052052880</a>
+        <a class="btn ghost" href="https://wa.me/2348052052880">Chat on WhatsApp</a></div>
+      <div class="inner"><input id="nm" type="text" placeholder="Your name"><textarea id="ms" rows="3" placeholder="Tell us about your conference"></textarea><button id="send" class="btn" style="width:100%">Send via WhatsApp</button></div>
+    </div>
+  </section>
+</div>
+<footer>© 2026 Saiii CallPaper Company · 08052052880</footer>
+<script>
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('send').addEventListener('click',function(){
+    var t='Hello Saiii CallPaper Company, I am '+(document.getElementById('nm').value||'interested')+'. '+document.getElementById('ms').value;
+    window.open('https://wa.me/2348052052880?text='+encodeURIComponent(t),'_blank');
+  });
+  var hand=document.getElementById('hand');
+  var F=[['th',-18,-72,[145,370]],['f1',-2,-17,[160,285]],['f2',0,-5,[195,285]],['f3',3,10,[230,285]],['f4',6,26,[262,285]]]
+    .map(function(a){return{g:document.getElementById(a[0]),c:a[1],o:a[2],p:a[3]}});
+  var cur=reduce?.4:0,tgt=cur,run=false;
+  function draw(o){
+    F.forEach(function(f){var a=f.c+(f.o-f.c)*o;f.g.setAttribute('transform','rotate('+a.toFixed(1)+' '+f.p[0]+' '+f.p[1]+')')});
+    hand.style.transform='rotateX('+(55-o*55).toFixed(1)+'deg) rotateY('+(-28+o*56).toFixed(1)+'deg) rotateZ('+(-10+o*10).toFixed(1)+'deg) scale('+(.65+o*1.25).toFixed(3)+') translateZ('+(o*140).toFixed(0)+'px)';
+  }
+  function target(){var m=document.documentElement.scrollHeight-innerHeight;tgt=m>0?Math.min(1,Math.max(0,scrollY/m)):0}
+  function loop(){cur+=(tgt-cur)*.12;draw(cur);if(Math.abs(tgt-cur)>.001){requestAnimationFrame(loop)}else{run=false}}
+  function kick(){target();if(!run){run=true;requestAnimationFrame(loop)}}
+  draw(cur);
+  if(!reduce){addEventListener('scroll',kick,{passive:true});addEventListener('resize',kick);kick();
+    function tilt(el,x,y){var r=el.getBoundingClientRect(),px=(x-r.left)/r.width,py=(y-r.top)/r.height;el.classList.remove('leave');
+      el.style.setProperty('--ry',((px-.5)*14).toFixed(2)+'deg');el.style.setProperty('--rx',((.5-py)*14).toFixed(2)+'deg');
+      el.style.setProperty('--gx',px*100+'%');el.style.setProperty('--gy',py*100+'%');el.style.setProperty('--go',1)}
+    function reset(el){el.classList.add('leave');el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');el.style.setProperty('--go',0)}
+    document.querySelectorAll('.card').forEach(function(el){
+      el.addEventListener('pointermove',function(e){tilt(el,e.clientX,e.clientY)});
+      el.addEventListener('pointerleave',function(){reset(el)});
+      el.addEventListener('touchmove',function(e){var t=e.touches[0];tilt(el,t.clientX,t.clientY)},{passive:true});
+      el.addEventListener('touchend',function(){reset(el)});
+    });
+  }
+})();
+</script>
+</body>
+</html>
