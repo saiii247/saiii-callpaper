@@ -7,30 +7,30 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;700&display=swap">
 <style>
 :root{
-  --bg:#070707;--ink:#f6f1e3;--mute:#a79f88;--gold:#d4af37;--gold1:#f7e08a;--gold2:#b8902a;--gold3:#7d5f12;
-  --card:rgba(255,255,255,.05);--line:rgba(212,175,55,.28);--sh:rgba(0,0,0,.6);
+  --bg:#fffdf7;--ink:#241b08;--mute:#6f6548;--gold:#b8902a;--gold1:#f2d675;--gold2:#c9a227;--gold3:#8a6a16;
+  --card:rgba(255,255,255,.85);--line:rgba(184,144,42,.38);--sh:rgba(120,90,20,.16);
   --serif:"Fraunces",Georgia,"Times New Roman",serif;--sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 }
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(1000px 600px at 50% -10%,#1c1606,var(--bg) 60%);background-color:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+body{margin:0;background:radial-gradient(1000px 600px at 50% -10%,#fff0b8,var(--bg) 62%);background-color:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.1;margin:0}
-.gold{background:linear-gradient(90deg,var(--gold1),var(--gold),var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gold{background:linear-gradient(90deg,#8a6a16,#c9a227,#8a6a16);-webkit-background-clip:text;background-clip:text;color:transparent}
 #handwrap{position:fixed;inset:0;z-index:0;pointer-events:none;display:grid;place-items:center;perspective:1100px;overflow:hidden}
-#hand{width:min(92vw,560px);height:auto;transform-style:preserve-3d;will-change:transform;opacity:.55;filter:drop-shadow(0 0 22px rgba(212,175,55,.35))}
+#hand{width:min(92vw,560px);height:auto;transform-style:preserve-3d;will-change:transform;opacity:.22;filter:drop-shadow(0 0 18px rgba(184,144,42,.3))}
 .glass{background:var(--card);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);border:1px solid var(--line);border-radius:20px;
-  box-shadow:0 1px 2px var(--sh),0 10px 22px var(--sh),0 28px 54px var(--sh),inset 0 1px 0 rgba(255,255,255,.08)}
+  box-shadow:0 1px 2px var(--sh),0 10px 22px var(--sh),0 28px 54px var(--sh),inset 0 1px 0 rgba(255,255,255,.9)}
 .btn{font:700 1rem var(--sans);border:0;cursor:pointer;padding:14px 26px;border-radius:14px;color:#1a1204;text-decoration:none;display:inline-block;text-align:center;
   background:linear-gradient(180deg,var(--gold1),var(--gold) 55%,var(--gold2));
   box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 6px 0 var(--gold3),0 14px 24px rgba(212,175,55,.3);transition:transform .12s,box-shadow .12s}
 .btn:active{transform:translateY(5px);box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 1px 0 var(--gold3),0 4px 8px rgba(212,175,55,.3)}
-.btn.ghost{background:linear-gradient(180deg,#232323,#111);color:var(--gold);border:1px solid var(--line);box-shadow:0 6px 0 #000,0 12px 20px rgba(0,0,0,.5)}
-.btn.ghost:active{box-shadow:0 1px 0 #000}
+.btn.ghost{background:linear-gradient(180deg,#fff,#f6ecc9);color:#6b500e;border:1px solid var(--line);box-shadow:0 6px 0 #d9c689,0 12px 20px rgba(120,90,20,.2)}
+.btn.ghost:active{box-shadow:0 1px 0 #d9c689}
 .btn.sm{padding:9px 18px;font-size:.9rem;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 4px 0 var(--gold3),0 8px 14px rgba(212,175,55,.25)}
 .btn.sm:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold3)}
-.btn.ghost.sm{box-shadow:0 4px 0 #000,0 8px 14px rgba(0,0,0,.5)}
+.btn.ghost.sm{box-shadow:0 4px 0 #d9c689,0 8px 14px rgba(120,90,20,.2)}
 .btn[disabled]{opacity:.4;cursor:not-allowed;transform:translateY(3px);box-shadow:none}
 nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
@@ -48,8 +48,8 @@ h1{font-size:clamp(2.3rem,6.4vw,4rem);font-weight:800;margin-bottom:18px}
 .stage{perspective:900px;height:340px;display:grid;place-items:center;position:relative}
 .doc3d{position:relative;width:190px;height:245px;transform-style:preserve-3d;animation:spin 16s linear infinite}
 @keyframes spin{from{transform:rotateX(-12deg) rotateY(0)}to{transform:rotateX(-12deg) rotateY(360deg)}}
-.sheet{position:absolute;inset:0;border-radius:10px;background:linear-gradient(145deg,#1d1d1d,#0b0b0b);border:1px solid var(--gold2);box-shadow:0 12px 34px rgba(0,0,0,.7),0 0 24px rgba(212,175,55,.15);padding:22px 18px}
-.sheet i{display:block;height:7px;border-radius:4px;background:#3a3320;margin-bottom:11px}
+.sheet{position:absolute;inset:0;border-radius:10px;background:linear-gradient(145deg,#ffffff,#f8efcf);border:1px solid var(--gold2);box-shadow:0 12px 34px rgba(120,90,20,.3),0 0 24px rgba(212,175,55,.2);padding:22px 18px}
+.sheet i{display:block;height:7px;border-radius:4px;background:#e6d9a6;margin-bottom:11px}
 .sheet i:nth-child(1){width:62%;height:12px;background:linear-gradient(90deg,var(--gold1),var(--gold2))}.sheet i:nth-child(3){width:86%}.sheet i:nth-child(5){width:72%}.sheet i:nth-child(7){width:92%}
 .s1{transform:translateZ(26px)}.s2{transform:translateZ(9px);opacity:.95}.s3{transform:translateZ(-9px);opacity:.9}.s4{transform:translateZ(-26px);opacity:.85}
 .stamp{position:absolute;right:12px;bottom:16px;padding:4px 10px;border:2px solid var(--gold);color:var(--gold);border-radius:8px;font-size:.7rem;font-weight:800;transform:rotate(-8deg)}
@@ -66,7 +66,7 @@ h2{font-size:clamp(1.7rem,4.4vw,2.6rem);margin-bottom:12px}
 .card{padding:26px;transform-style:preserve-3d;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .18s ease-out;will-change:transform;position:relative}
 .card.leave{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
 .card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,0%),rgba(247,224,138,.22),transparent 55%);opacity:var(--go,0);transition:opacity .2s}
-.ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:1.5rem;margin-bottom:14px;background:linear-gradient(145deg,#2a2210,#0d0d0d);border:1px solid var(--line);box-shadow:0 10px 20px var(--sh);transform:translateZ(40px)}
+.ico{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:1.5rem;margin-bottom:14px;background:linear-gradient(145deg,#fff7da,#f2e3a6);border:1px solid var(--line);box-shadow:0 10px 20px var(--sh);transform:translateZ(40px)}
 .card h3{font-size:1.25rem;margin-bottom:6px;transform:translateZ(26px)}
 .card p{margin:0;color:var(--mute);font-size:.95rem;transform:translateZ(14px)}
 .steps{counter-reset:s}.step{counter-increment:s}.step h3::before{content:counter(s,decimal-leading-zero) "  ";color:var(--gold);font-size:.9rem;font-family:var(--sans)}
@@ -78,34 +78,34 @@ h2{font-size:clamp(1.7rem,4.4vw,2.6rem);margin-bottom:12px}
 .feat{border:2px solid var(--gold)}.feat .badge{position:absolute;top:-13px;left:24px;background:var(--gold);color:#1a1204;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:99px;transform:translateZ(40px)}
 details{padding:18px 22px;margin-bottom:12px;cursor:pointer}details summary{font-weight:700;list-style:none}details p{margin:10px 0 0;color:var(--mute)}
 .contact{padding:44px 28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:70px;border-color:var(--gold)}
-.contact .inner{padding:22px;border-radius:18px;background:rgba(0,0,0,.4);border:1px solid var(--line)}
-.contact input,.contact textarea{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);margin-bottom:12px}
-.contact ::placeholder{color:#8a826c}
+.contact .inner{padding:22px;border-radius:18px;background:rgba(255,255,255,.75);border:1px solid var(--line)}
+.contact input,.contact textarea{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);margin-bottom:12px}
+.contact ::placeholder{color:#a39a7c}
 .phone{display:block;font:800 1.7rem var(--serif);color:var(--gold);text-decoration:none;margin:6px 0 14px}
 .pv{padding-top:30px}
 .panel{padding:26px}.formbox{max-width:620px}
 .field{margin-bottom:14px}.field label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
-.field input,.field textarea,.field select{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink)}
+.field input,.field textarea,.field select{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink)}
 .field select option{color:#000}
-.msg{margin-top:12px;font-weight:700;font-size:.92rem}.ok{color:#7fe3a1}.err{color:#ff8a8a}.wait{color:var(--mute)}
+.msg{margin-top:12px;font-weight:700;font-size:.92rem}.ok{color:#1f7a47}.err{color:#b03a3a}.wait{color:var(--mute)}
 .rv{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 .rv h3{margin-bottom:8px}.rv .abs{color:var(--mute);font-size:.94rem;margin:0 0 14px}
 .note{padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:rgba(212,175,55,.07);font-size:.9rem;margin-bottom:22px}
 .dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px;margin-bottom:20px}
-.dash div{background:#0e0e0e;border:1px solid var(--line);border-radius:14px;padding:16px}
+.dash div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
 .dash b{display:block;font:800 1.7rem var(--serif);color:var(--gold)}.dash span{font-size:.82rem;color:var(--mute)}
-.tablewrap{overflow-x:auto;background:#0b0b0b;border:1px solid var(--line);border-radius:16px}
+.tablewrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:16px}
 table{width:100%;border-collapse:collapse;min-width:780px;font-size:.92rem}
-th{text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding:14px 16px;border-bottom:1px solid var(--line);background:#111}
-td{padding:16px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{text-align:left;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding:14px 16px;border-bottom:1px solid var(--line);background:#faf3d6}
+td{padding:16px;border-bottom:1px solid rgba(184,144,42,.18);vertical-align:top}
 tr:last-child td{border-bottom:0}
 .t b{display:inline}.t .em{color:var(--gold);font-size:.85rem;margin-left:8px}.t .au{display:block;color:var(--mute);font-size:.84rem;margin-top:2px}.t .cm{display:block;color:var(--mute);font-size:.82rem;margin-top:6px}
 .bd{display:inline-block;padding:4px 12px;border-radius:99px;font-size:.76rem;font-weight:700;border:1px solid;white-space:nowrap}
-.b-sub{color:#c9c2ab;border-color:#5b5640}.b-rev{color:var(--gold);border-color:var(--gold)}
-.b-acc{color:#7fe3a1;border-color:#2e7d52;background:rgba(127,227,161,.08)}.b-rej{color:#ff8a8a;border-color:#8a3a3a;background:rgba(255,138,138,.08)}
+.b-sub{color:#7a704f;border-color:#cfc49a}.b-rev{color:var(--gold);border-color:var(--gold)}
+.b-acc{color:#1f7a47;border-color:#2e7d52;background:rgba(46,125,82,.08)}.b-rej{color:#b03a3a;border-color:#b03a3a;background:rgba(176,58,58,.07)}
 .acts{display:flex;gap:10px}.empty{padding:34px;text-align:center;color:var(--mute)}
 footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;position:relative;z-index:1}
-@media (max-width:760px){.hgrid,.blind,.contact{grid-template-columns:1fr}.stage{height:290px}.blind{padding:24px}#hand{opacity:.45}
+@media (max-width:760px){.hgrid,.blind,.contact{grid-template-columns:1fr}.stage{height:290px}.blind{padding:24px}#hand{opacity:.18}
   nav{flex-direction:column;align-items:flex-start}nav .links{overflow-x:auto;max-width:100%;padding-bottom:4px}}
 @media (prefers-reduced-motion:reduce){.doc3d{animation:none;transform:rotateX(-12deg) rotateY(-30deg)}.card{transition:none}html{scroll-behavior:auto}}
 </style>
@@ -121,7 +121,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
     <g id="f2"><rect x="180" y="110" width="30" height="175" rx="15"/></g>
     <g id="f3"><rect x="216" y="130" width="28" height="155" rx="14"/></g>
     <g id="f4"><rect x="250" y="170" width="24" height="115" rx="12"/></g>
-    <rect x="140" y="268" width="134" height="150" rx="46" fill="rgba(10,10,10,.55)"/>
+    <rect x="140" y="268" width="134" height="150" rx="46" fill="rgba(255,255,255,.7)"/>
     <path d="M175 330c20 14 42 14 62 0" opacity=".5"/><circle cx="207" cy="360" r="6" fill="url(#g)" stroke="none" opacity=".7"/>
   </g>
 </svg></div>
@@ -135,7 +135,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
         <circle cx="24" cy="11" r="2.6"/><rect x="21.8" y="17" width="4.4" height="20" rx="2.2"/>
         <circle cx="35" cy="8" r="2.6"/><rect x="32.8" y="14" width="4.4" height="26" rx="2.2"/></g></svg>
       <span><b class="gold">saiii</b><small>CallPaper Company</small></span></a>
-    <div class="links" id="navlinks"><a href="#/" data-v="home">Home</a><a href="#/author" data-v="author">Submit paper</a><a href="#/reviewer" data-v="reviewer">Reviewer</a><a href="#/chair" data-v="chair">Chair</a></div>
+    <div class="links" id="navlinks"><a href="#/" data-v="home">Home</a><a href="#/author" data-v="author">Submit paper</a><a href="#/reviewer" data-v="reviewer" class="staff" hidden>Reviewer</a><a href="#/chair" data-v="chair" class="staff" hidden>Chair</a><a href="#" id="logout" class="staff" hidden>Log out</a></div>
   </nav>
 
   <!-- HOME -->
@@ -179,7 +179,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
         <div><div class="tag">Fair by design</div><h2>Blind review, built in</h2>
           <p class="sub" style="margin:0">Reviewers see the work, never the author. Scores reflect the paper alone, which protects your conference’s credibility.</p></div>
         <div class="glass card" style="padding:22px"><b>Paper #214 · Machine Learning in Education</b><br>
-          <span style="color:var(--mute)">Author:</span> <span class="redact">Samuel Daniel</span><br>
+          <span style="color:var(--mute)">Author:</span> <span class="redact">Hidden Author</span><br>
           <span style="color:var(--mute)">Reviewer score:</span> 8 / 10<br><span style="color:var(--mute)">Status:</span> Under review</div>
       </div>
     </section>
@@ -202,8 +202,8 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
       <div class="contact glass">
         <div><h2>Ready to <span class="gold">stop chasing papers?</span></h2><p class="lead" style="margin:12px 0 14px">Call or message Saiii CallPaper Company today.</p>
           <a class="phone" href="tel:08052052880">08052052880</a>
-          <a class="btn ghost" href="https://wa.me/2348052052880">Chat on WhatsApp</a></div>
-        <div class="inner"><input id="nm" type="text" placeholder="Your name"><textarea id="ms" rows="3" placeholder="Tell us about your conference"></textarea><button id="send" type="button" class="btn" style="width:100%">Send via WhatsApp</button></div>
+          </div>
+        <form class="inner" id="f-contact"><input id="nm" type="text" required placeholder="Your name" autocomplete="name"><input id="em" type="email" required placeholder="Your email" autocomplete="email"><textarea id="ms" rows="3" required placeholder="What is your paper or conference about?"></textarea><button id="send" type="submit" class="btn" style="width:100%">Send message</button><div id="c-msg" class="msg" role="status" aria-live="polite"></div></form>
       </div>
     </section>
   </div>
@@ -212,6 +212,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
   <div class="view pv" id="v-author">
     <div class="tag">Author</div><h2>Submit your paper</h2>
     <p class="sub">Send your abstract and paper. You’ll get the decision by email.</p>
+    <div class="note">🔒 Reviewed blind: reviewers see your paper without your name or email.</div>
     <form id="f-author" class="glass panel formbox">
       <div class="field"><label for="a-name">Author name</label><input id="a-name" type="text" required autocomplete="name"></div>
       <div class="field"><label for="a-email">Author email</label><input id="a-email" type="email" required autocomplete="email" placeholder="you@example.com"></div>
@@ -220,6 +221,24 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
       <div class="field"><label for="a-file">Paper file (optional)</label><input id="a-file" type="file" accept=".pdf,.doc,.docx"></div>
       <button class="btn" type="submit" style="width:100%">Submit paper</button>
       <div id="a-msg" class="msg" role="status" aria-live="polite"></div>
+    </form>
+    <form id="f-track" class="glass panel formbox" style="margin-top:22px">
+      <h3 style="margin-bottom:12px">Track your paper</h3>
+      <div class="field"><label for="t-code">Tracking code</label><input id="t-code" type="text" required placeholder="CP-XXXX"></div>
+      <div class="field"><label for="t-email">Author email</label><input id="t-email" type="email" required></div>
+      <button class="btn sm" type="submit">Check status</button>
+      <div id="t-msg" class="msg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <!-- STAFF LOGIN -->
+  <div class="view pv" id="v-login">
+    <div class="tag">Staff only</div><h2>Staff sign in</h2>
+    <p class="sub">Reviewer and chair pages are for the conference committee.</p>
+    <form id="f-login" class="glass panel formbox">
+      <div class="field"><label for="l-pw">Passcode</label><input id="l-pw" type="password" required autocomplete="current-password"></div>
+      <button class="btn" type="submit" style="width:100%">Sign in</button>
+      <div id="l-msg" class="msg" role="status" aria-live="polite"></div>
     </form>
   </div>
 
@@ -240,12 +259,13 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
       <tbody id="ch-body"></tbody></table></div>
   </div>
 </div>
-<footer>© 2026 Saiii CallPaper Company · 08052052880</footer>
+<footer>© 2026 Saiii CallPaper Company · 08052052880 · <a href="#/login" style="color:inherit;opacity:.5">Staff</a></footer>
 
 <script>
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var WEBHOOK='https://justsaiii.app.n8n.cloud/webhook/decision';
+  var CONTACT_WEBHOOK='https://justsaiii.app.n8n.cloud/webhook/contact';
   var KEY='callpaper.papers.v1';
   var $=function(id){return document.getElementById(id)};
   function h(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
@@ -256,16 +276,43 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
   function save(){try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}}
   function commentsOf(p){return p.reviews.map(function(r){return r.comment}).filter(Boolean).join(' | ')}
 
+  /* ---- staff gate (client-side; see note) ---- */
+  var SALT='27bfef1348d6f045dec6e927f34d1bb9',HASH='f6b93fce246c6a1607272fbc71023ed594f43671f8614c4507f8c4ed698edcaa';
+  var fails=0,lockUntil=0;
+  function unhex(x){var a=new Uint8Array(x.length/2);for(var i=0;i<a.length;i++)a[i]=parseInt(x.substr(i*2,2),16);return a}
+  function hex(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')}
+  function check(pw){return crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits'])
+    .then(function(k){return crypto.subtle.deriveBits({name:'PBKDF2',salt:unhex(SALT),iterations:150000,hash:'SHA-256'},k,256)})
+    .then(function(b){return hex(b)===HASH})}
+  function isIn(){try{return sessionStorage.getItem('cp.staff')==='1'}catch(e){return false}}
+  $('f-login').addEventListener('submit',function(e){
+    e.preventDefault();var m=$('l-msg'),pw=$('l-pw').value;
+    if(Date.now()<lockUntil){m.className='msg err';m.textContent='Too many tries. Wait a moment.';return}
+    m.className='msg wait';m.textContent='Checking…';
+    check(pw).then(function(ok){
+      if(ok){fails=0;try{sessionStorage.setItem('cp.staff','1')}catch(x){}$('l-pw').value='';m.textContent='';location.hash='#/chair'}
+      else{fails++;if(fails>=5){lockUntil=Date.now()+30000;fails=0}m.className='msg err';m.textContent='Wrong passcode.'}
+    }).catch(function(){m.className='msg err';m.textContent='Sign-in needs a secure (https) page.'});
+  });
+  $('logout').addEventListener('click',function(e){e.preventDefault();try{sessionStorage.removeItem('cp.staff')}catch(x){}location.hash='#/'});
+
   /* ---- author form ---- */
   $('f-author').addEventListener('submit',function(e){
     e.preventDefault();
-    var file=$('a-file').files[0];
-    DB.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+    var file=$('a-file').files[0],code='CP-'+Math.random().toString(36).slice(2,6).toUpperCase();
+    DB.push({code:code,id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),
       title:$('a-title').value.trim(),abstract:$('a-abs').value.trim(),
       authorName:$('a-name').value.trim(),authorEmail:$('a-email').value.trim(),
       fileName:file?file.name:'',submittedAt:new Date().toISOString(),status:'Submitted',reviews:[]});
     save();this.reset();
-    var m=$('a-msg');m.className='msg ok';m.textContent='Paper submitted ✓';
+    var m=$('a-msg');m.className='msg ok note';m.style.fontSize='1.05rem';m.textContent='✅ Paper submitted! Your tracking code is '+code+'. Screenshot or copy it, you need it to check your status.';try{m.scrollIntoView({block:'center',behavior:'smooth'})}catch(x){}
+  });
+
+  $('f-track').addEventListener('submit',function(e){
+    e.preventDefault();var m=$('t-msg'),c=$('t-code').value.trim().toUpperCase(),em=$('t-email').value.trim().toLowerCase();
+    var p=DB.filter(function(x){return (x.code||'').toUpperCase()===c&&x.authorEmail.toLowerCase()===em})[0];
+    if(!p){m.className='msg err';m.textContent='No paper found with that code and email.';return}
+    m.className='msg ok';m.textContent=p.title+' — Status: '+p.status;
   });
 
   /* ---- reviewer page (no author name or email is ever read here) ---- */
@@ -275,6 +322,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
     if(!open.length){box.appendChild(h('div','empty glass','No papers waiting for review.'));return}
     open.forEach(function(p){
       var c=h('div','glass panel');
+      c.appendChild(h('div','tag','Paper '+(p.code||p.id.slice(-4).toUpperCase())));
       c.appendChild(h('h3','',p.title));
       c.appendChild(h('p','abs',p.abstract));
       var f1=h('div','field');f1.appendChild(h('label','','Score (1–10)'));
@@ -330,7 +378,9 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
 
   /* ---- router ---- */
   function route(){
-    var hs=location.hash,m=/^#\/(author|reviewer|chair)$/.exec(hs),v=m?m[1]:'home';
+    var hs=location.hash,m=/^#\/(author|reviewer|chair|login)$/.exec(hs),v=m?m[1]:'home';
+    if((v==='reviewer'||v==='chair')&&!isIn()){location.hash='#/login';return}
+    document.querySelectorAll('.staff').forEach(function(a){a.hidden=!isIn()});
     document.querySelectorAll('.view').forEach(function(s){s.classList.toggle('on',s.id==='v-'+v)});
     document.querySelectorAll('#navlinks a').forEach(function(a){a.classList.toggle('on',a.dataset.v===v)});
     if(v==='reviewer')renderReviewer();if(v==='chair')renderChair();
@@ -339,9 +389,14 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
     kick();
   }
 
-  $('send').addEventListener('click',function(){
-    var t='Hello Saiii CallPaper Company, I am '+($('nm').value||'interested')+'. '+$('ms').value;
-    window.open('https://wa.me/2348052052880?text='+encodeURIComponent(t),'_blank');
+  $('f-contact').addEventListener('submit',function(e){
+    e.preventDefault();var m=$('c-msg'),b=$('send'),f=this;
+    b.disabled=true;m.className='msg wait';m.textContent='Sending…';
+    fetch(CONTACT_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name:$('nm').value.trim(),email:$('em').value.trim(),message:$('ms').value.trim()})})
+    .then(function(r){if(!r.ok)throw new Error(r.status);f.reset();m.className='msg ok';m.textContent='Thanks! We will email you soon.'})
+    .catch(function(){m.className='msg err';m.textContent='Could not send. Please try again.'})
+    .then(function(){b.disabled=false});
   });
 
   /* ---- 3D hand ---- */
