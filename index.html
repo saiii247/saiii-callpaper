@@ -31,6 +31,8 @@ h1,h2,h3{font-family:var(--serif);letter-spacing:-.02em;line-height:1.1;margin:0
 .btn.ghost:active{box-shadow:0 1px 0 #000}
 .btn.sm{padding:9px 18px;font-size:.9rem;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 4px 0 var(--gold3),0 8px 14px rgba(212,175,55,.25)}
 .btn.sm:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gold3)}
+.btn.ghost.sm{box-shadow:0 4px 0 #000,0 8px 14px rgba(0,0,0,.5)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:translateY(3px);box-shadow:none}
 nav{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
 .brand svg{width:42px;height:42px;filter:drop-shadow(0 4px 10px rgba(212,175,55,.4))}
@@ -72,6 +74,13 @@ h2{font-size:clamp(1.7rem,4.4vw,2.6rem);margin-bottom:12px}
 .card ul{padding:0;margin:14px 0 20px;list-style:none;font-size:.93rem;transform:translateZ(14px)}
 .card li{padding:5px 0 5px 24px;position:relative}.card li::before{content:"✓";position:absolute;left:0;color:var(--gold);font-weight:800}
 .feat{border:2px solid var(--gold)}.feat .badge{position:absolute;top:-13px;left:24px;background:var(--gold);color:#1a1204;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:99px;transform:translateZ(40px)}
+/* chair */
+.paper .meta{font-size:.86rem;color:var(--mute);margin:4px 0 12px;transform:translateZ(18px)}
+.paper .meta b{color:var(--ink);font-weight:600}
+.paper .cm{font-size:.92rem;color:var(--ink);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 16px;transform:translateZ(14px)}
+.paper .acts{display:flex;gap:12px;flex-wrap:wrap;transform:translateZ(24px)}
+.paper .status{min-height:1.5em;margin-top:14px;font-weight:700;font-size:.95rem;transform:translateZ(14px)}
+.status.ok{color:#7fe3a1}.status.err{color:#ff8a8a}.status.wait{color:var(--mute)}
 details{padding:18px 22px;margin-bottom:12px;cursor:pointer}details summary{font-weight:700;list-style:none}details p{margin:10px 0 0;color:var(--mute)}
 .contact{padding:44px 28px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:70px;border-color:var(--gold)}
 .contact .inner{padding:22px;border-radius:18px;background:rgba(0,0,0,.4);border:1px solid var(--line)}
@@ -108,7 +117,7 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
         <circle cx="24" cy="11" r="2.6"/><rect x="21.8" y="17" width="4.4" height="20" rx="2.2"/>
         <circle cx="35" cy="8" r="2.6"/><rect x="32.8" y="14" width="4.4" height="26" rx="2.2"/></g></svg>
       <span><b class="gold">saiii</b><small>CallPaper Company</small></span></a>
-    <div class="links"><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="btn sm" href="tel:08052052880">Call us</a></div>
+    <div class="links"><a href="#how">How it works</a><a href="#chair">Chair</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="btn sm" href="tel:08052052880">Call us</a></div>
   </nav>
   <div id="top" class="hgrid">
     <div>
@@ -157,6 +166,12 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
     </div>
   </section>
 
+  <section id="chair">
+    <div class="tag">Chair</div><h2>Decide on each paper</h2>
+    <p class="sub">Read the reviewer comments, then accept or reject. The author gets an email straight away.</p>
+    <div class="grid" id="papers"></div>
+  </section>
+
   <section id="pricing">
     <div class="tag">Pricing</div><h2>Simple, honest pricing</h2>
     <p class="sub">Try everything free for 14 days. No surprises after.</p>
@@ -187,10 +202,62 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
 <script>
 (function(){
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var WEBHOOK='https://justsaiii.app.n8n.cloud/webhook/decision';
+
+  /* ---- Chair page: replace these sample papers with your real ones ---- */
+  var PAPERS=[
+    {title:'Machine Learning in Education',authorName:'Samuel Daniel',authorEmail:'author1@example.com',score:'8 / 10',
+     comments:'Clear method and strong results. The literature review could be tighter.'},
+    {title:'Mobile Money and Small Business Growth',authorName:'Amina Yusuf',authorEmail:'author2@example.com',score:'6 / 10',
+     comments:'Interesting topic, but the sample size is too small to support the conclusions.'},
+    {title:'Renewable Energy Access in Rural Communities',authorName:'Chinedu Okafor',authorEmail:'author3@example.com',score:'9 / 10',
+     comments:'Excellent fieldwork and a well-argued policy section. Recommend acceptance.'}
+  ];
+
+  function el(tag,cls,text){var n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n}
+
+  function sendDecision(p,decision,btns,status){
+    btns.forEach(function(b){b.disabled=true});
+    status.className='status wait';status.textContent='Sending…';
+    fetch(WEBHOOK,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({authorName:p.authorName,title:p.title,authorEmail:p.authorEmail,decision:decision,comments:p.comments})
+    }).then(function(res){
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      status.className='status ok';status.textContent='Email sent ✓';
+    }).catch(function(){
+      status.className='status err';status.textContent='Email failed, try again';
+      btns.forEach(function(b){b.disabled=false});
+    });
+  }
+
+  var list=document.getElementById('papers');
+  PAPERS.forEach(function(p){
+    var card=el('div','glass card paper');
+    card.appendChild(el('h3','',p.title));
+    var meta=el('div','meta');
+    var a=el('b','',p.authorName);meta.appendChild(a);
+    meta.appendChild(document.createTextNode(' · '+p.authorEmail+' · Score '+p.score));
+    card.appendChild(meta);
+    card.appendChild(el('div','cm','Reviewer comments: '+p.comments));
+    var acts=el('div','acts');
+    var yes=el('button','btn sm','Accept');yes.type='button';
+    var no=el('button','btn ghost sm','Reject');no.type='button';
+    acts.appendChild(yes);acts.appendChild(no);card.appendChild(acts);
+    var status=el('div','status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+    card.appendChild(status);
+    yes.addEventListener('click',function(){sendDecision(p,'Accepted',[yes,no],status)});
+    no.addEventListener('click',function(){sendDecision(p,'Rejected',[yes,no],status)});
+    list.appendChild(card);
+  });
+
   document.getElementById('send').addEventListener('click',function(){
     var t='Hello Saiii CallPaper Company, I am '+(document.getElementById('nm').value||'interested')+'. '+document.getElementById('ms').value;
     window.open('https://wa.me/2348052052880?text='+encodeURIComponent(t),'_blank');
   });
+
+  /* ---- 3D hand ---- */
   var hand=document.getElementById('hand');
   var F=[['th',-18,-72,[145,370]],['f1',-2,-17,[160,285]],['f2',0,-5,[195,285]],['f3',3,10,[230,285]],['f4',6,26,[262,285]]]
     .map(function(a){return{g:document.getElementById(a[0]),c:a[1],o:a[2],p:a[3]}});
@@ -208,11 +275,11 @@ footer{text-align:center;color:var(--mute);font-size:.85rem;padding:36px 0 40px;
       el.style.setProperty('--ry',((px-.5)*14).toFixed(2)+'deg');el.style.setProperty('--rx',((.5-py)*14).toFixed(2)+'deg');
       el.style.setProperty('--gx',px*100+'%');el.style.setProperty('--gy',py*100+'%');el.style.setProperty('--go',1)}
     function reset(el){el.classList.add('leave');el.style.setProperty('--rx','0deg');el.style.setProperty('--ry','0deg');el.style.setProperty('--go',0)}
-    document.querySelectorAll('.card').forEach(function(el){
-      el.addEventListener('pointermove',function(e){tilt(el,e.clientX,e.clientY)});
-      el.addEventListener('pointerleave',function(){reset(el)});
-      el.addEventListener('touchmove',function(e){var t=e.touches[0];tilt(el,t.clientX,t.clientY)},{passive:true});
-      el.addEventListener('touchend',function(){reset(el)});
+    document.querySelectorAll('.card').forEach(function(c){
+      c.addEventListener('pointermove',function(e){tilt(c,e.clientX,e.clientY)});
+      c.addEventListener('pointerleave',function(){reset(c)});
+      c.addEventListener('touchmove',function(e){var t=e.touches[0];tilt(c,t.clientX,t.clientY)},{passive:true});
+      c.addEventListener('touchend',function(){reset(c)});
     });
   }
 })();
